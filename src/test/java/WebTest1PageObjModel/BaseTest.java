@@ -12,19 +12,19 @@ public class BaseTest extends Utils {
 
 
     @BeforeTest
-public void openBrowser() {
+    public void openBrowser() {
 
         browserSelector.setupBrowser();
 
     }
 
-  //  @AfterTest
+    @AfterTest
 
-  //  public void closeBrowser() {
+    public void closeBrowser() {
 
-   //     browserSelector.closeBrowser();
+        browserSelector.closeBrowser();
     }
-//
+}
 
 
 
