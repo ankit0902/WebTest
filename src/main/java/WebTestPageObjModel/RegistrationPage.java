@@ -27,7 +27,7 @@ public class RegistrationPage extends Utils{
         sendText(_email,"testtest" + timestamp + "@test.com");
         sendText(_password,"testtest");
         sendText(_confirmPassword,"testtest");
-        clickOnElement();
+        clickOnElement(_registerButton);
    }
 
 

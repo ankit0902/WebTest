@@ -1,18 +1,31 @@
 package WebTestPageObjModel;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.testng.asserts.SoftAssert;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
+
+import static com.sun.org.apache.xml.internal.serialize.LineSeparator.Web;
 
 
 public class Utils extends BasePage{
 
-    public static void clickOnElement(){driver.findElement(By).click();}
+    public void clickOnElement(By by){
+
+        driver.findElement(by).click();
+    }
+
+
+
 
     public static String getTextFromElement(By by){
 
@@ -23,15 +36,18 @@ public class Utils extends BasePage{
         driver.findElement(by).sendKeys(text);
         }
 
-        public static void waitUntilClickable(By by,long time){
+        public static void waitUntilClickable(By by,int time){
 
-            WebDriverWait wait = new WebDriverWait(driver,time);
-            wait.until(ExpectedConditions.elementToBeClickable(by));
-    }
+        WebDriverWait wait = new WebDriverWait(driver,time);
+        }
 
     public static void waitForElementPresent(By by,int time){
 
+        WebDriverWait wait = new WebDriverWait(driver,time);
+
+
     }
+
 
         public static void assertTextMessage(String message,String expected,By by){
         String actual = getTextFromElement(by);
@@ -54,10 +70,65 @@ public class Utils extends BasePage{
 
     }
 
-    public void selectFromDropDownByValue(By by, String value){
+    public static void urlContains(String text){
+
+        driver.getPageSource().contains(text);
+    }
+
+    public static void selectFromDropDownByValue(By by, String value){
 
         Select select = new Select(driver.findElement(by));
         select.selectByValue(value);
+    }
+    public static void selectTextFromDropDown(By by,String text){
+
+        Select select = new Select(driver.findElement(by));
+        select.selectByValue(text);
+
+    }
+    public static void enterText(By by,String text){
+
+        Select select = new Select(driver.findElement(by));
+        select.selectByVisibleText(text);
+    }
+
+    public static void scrollClick(By by){
+
+        WebElement element = driver.findElement(by);
+          ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView(true);",element);
+          element.click();
+
+    }
+
+
+
+    public static void userselectCurrancy(By by, String text){
+
+        Select select = new Select(driver.findElement(by));
+        select.selectByVisibleText(text);
+    }
+
+
+
+    // To get text and verify from list
+
+
+    public static void getTextFromListAndVerify(By by,String a){
+        //Creating object of soft assert class
+        SoftAssert softAssert = new SoftAssert();
+        //creating list and finding value
+        List<WebElement> allProduct = driver.findElements(by);
+        //for each loop for product comparision
+        for (WebElement product : allProduct){
+
+            System.out.println(product.getText());
+
+            softAssert.assertTrue(product.getText().contains(a),"price doesnt contain " + a);
+        }
+
+        softAssert.assertAll();
+
+
     }
 
 

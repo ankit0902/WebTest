@@ -5,7 +5,6 @@ import org.openqa.selenium.By;
 public class NewsPage extends Utils {
 
     private By _news = By.xpath("//a[contains(@href,'about')and(@class='read-more')]");
-   // private By _news= By.linkText("About nopCommerce");
     private By _title = By.xpath("//input[@class='enter-comment-title']");
     private String title = "about nopcommerce website";
     private By _comment = By.xpath("//textarea[@class='enter-comment-text']");
