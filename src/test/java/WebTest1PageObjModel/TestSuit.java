@@ -14,7 +14,7 @@ public class TestSuit extends BaseTest {
     HomePage homepage = new HomePage();
     RegistrationPage registrationPage =  new RegistrationPage();
     RegistrationResultPage registrationResultPage= new RegistrationResultPage();
-    BooksCategory booksCategory = new BooksCategory();
+    BookPage booksCategory = new BookPage();
     BookCategoryComparisionResultPage booksCategoryComparisionResultPage = new BookCategoryComparisionResultPage();
     LoginPage loginPage = new LoginPage();
     ReferProduct  referProduct = new ReferProduct();
@@ -39,9 +39,9 @@ public class TestSuit extends BaseTest {
           homepage.clickOnRegisterButton();
         //fill the registration details
          registrationPage.verifyUserIsOnRegisterPage();
-        registrationPage.userEnterRegistrationDetail();
+         registrationPage.userEnterRegistrationDetail();
          //verify registration success message
-        registrationResultPage.verifyUserShouldBeRegistrationSuccessMessage();}
+         registrationResultPage.verifyUserShouldBeRegistrationSuccessMessage();}
 
 @Test
         public void userShouldbeAbleToCompareTwoDifferentProductSuccessfully() {

@@ -2,9 +2,7 @@ package WebTestPageObjModel;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -13,8 +11,6 @@ import org.testng.asserts.SoftAssert;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-
-import static com.sun.org.apache.xml.internal.serialize.LineSeparator.Web;
 
 
 public class Utils extends BasePage{
@@ -38,7 +34,7 @@ public class Utils extends BasePage{
 
         public static void waitUntilClickable(By by,int time){
 
-        WebDriverWait wait = new WebDriverWait(driver,time);
+        WebDriverWait wait  = new WebDriverWait(driver,time);
         }
 
     public static void waitForElementPresent(By by,int time){
@@ -128,9 +124,55 @@ public class Utils extends BasePage{
 
         softAssert.assertAll();
 
+        }
 
+    //for Time dealy
+    public static void timeDelay(int time){
+        try {
+            Thread.sleep(time *1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+    //to scroll and click
+    public static void scrollAndClick(By by) {
+        WebElement element = driver.findElement(by);
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
+        element.click();
+
+    }
+
+    //To select from drop down box by value
+    public static void selectFromDropdownByValue(By by,String value)
+    {
+        Select select = new Select(driver.findElement(by));
+        select.selectByValue(value);
+
+    }
+
+
+    //To check current url
+    public static void assertURL(String text)
+    {
+        org.junit.Assert.assertTrue(driver.getCurrentUrl().contains(text));
+    }
+
+    //To select from drop down box by text
+    public static void selectFromDropdownByText(By by,String text)
+    {
+        Select select = new Select(driver.findElement(by));
+        select.selectByVisibleText(text);
+    }
+    //method to enter text
+    public static void sendKeys(By by ,String text)
+    {
+        driver.findElement(by).sendKeys(text);
     }
 
 
 
 }
+
+
+
+
